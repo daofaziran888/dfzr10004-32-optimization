@@ -36,7 +36,10 @@
       </thead>
       <tbody>
         <tr v-for="row in rows" :key="String(row.id)">
-          <td v-for="column in columns" :key="column">{{ row[column] ?? '—' }}</td>
+          <td v-for="column in columns" :key="column">
+            <span v-if="column === '验证状态'" class="badge" :data-tone="verifyTone(row[column])">{{ row[column] ?? '—' }}</span>
+            <template v-else>{{ row[column] ?? '—' }}</template>
+          </td>
           <td class="row-actions">
             <button
               v-for="action in actions"
@@ -70,7 +73,7 @@ import { request } from '@/api/client'
 type Row = Record<string, string | number | null>
 
 const ENDPOINT = '/api/pipeline'
-const columns = ["节点编号", "节点名称", "上游节点", "下游节点", "处理耗时", "吞吐速率", "错误数量", "节点状态"]
+const columns = ["节点编号", "节点名称", "上游节点", "下游节点", "处理耗时", "吞吐速率", "错误数量", "节点状态", "沙箱覆盖", "验证状态", "最近验证运行"]
 const actions = ["启动节点", "暂停节点", "归档节点"]
 const statuses = ["草稿", "运行中", "已暂停", "已归档"]
 const stats = [{"label": "链路节点总数", "value": 0}, {"label": "运行中节点", "value": 0}, {"label": "已暂停节点", "value": 0}]
@@ -84,6 +87,13 @@ const filterFields = columns.slice(0, 3)
 function resetFilters() {
   filters.value = {}
   void reload()
+}
+
+function verifyTone(status: unknown): string {
+  const text = String(status ?? '')
+  if (text === '验证通过') return 'ok'
+  if (text === '验证失败') return 'bad'
+  return 'muted'
 }
 
 function exportRows() {

@@ -1,12 +1,15 @@
 """内存数据仓库：给每个业务模块准备一份可筛选、可流转的示例数据。
 
 真实项目里这里会换成数据库访问层；当前实现只依赖标准库，保证克隆下来就能起。
+sandbox_run 是沙箱运行链的内部表，不作为业务模块出现在概览里。
 """
 from __future__ import annotations
 
 from typing import Any
 
-from app.seed import SEED_ROWS
+from app.seed import SEED_ROWS, SEED_RUNS
+
+INTERNAL_TABLES = ("sandbox_run",)
 
 
 class Store:
@@ -14,9 +17,10 @@ class Store:
         self._tables: dict[str, list[dict[str, Any]]] = {
             name: [dict(row) for row in rows] for name, rows in SEED_ROWS.items()
         }
+        self._tables["sandbox_run"] = [dict(row) for row in SEED_RUNS]
 
     def module_names(self) -> list[str]:
-        return sorted(self._tables)
+        return sorted(name for name in self._tables if name not in INTERNAL_TABLES)
 
     def rows(self, module: str) -> list[dict[str, Any]]:
         return self._tables.setdefault(module, [])

@@ -33,3 +33,42 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .link { border: none; background: none; color: var(--brand); cursor: pointer; padding: 0; }
 .page-foot { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: var(--muted); }
 .error-text { color: #b42318; }
+.notice-text { color: #067647; }
+
+/* 沙箱运行详情 */
+.detail-panel { margin-top: 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+.detail-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+.detail-head h3 { margin: 0 0 4px; }
+.detail-panel h4 { margin: 16px 0 8px; font-size: 14px; }
+.row-active td { background: #eff6ff; }
+.row-failed td { background: #fef3f2; }
+.badge { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; border: 1px solid var(--border); }
+.badge[data-tone='ok'] { background: #ecfdf3; color: #067647; border-color: #abefc6; }
+.badge[data-tone='bad'] { background: #fef3f2; color: #b42318; border-color: #fecdca; }
+.badge[data-tone='warn'] { background: #fffaeb; color: #b54708; border-color: #fedf89; }
+.badge[data-tone='muted'] { background: #f2f4f7; color: #475467; }
+.breakpoint-card { margin-top: 12px; border: 1px solid #fecdca; background: #fffbfa; border-radius: 8px; padding: 10px 12px; }
+.breakpoint-card h4 { margin-top: 0; }
+.breakpoint-grid { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 13px; }
+.script-lines { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.script-lines li { display: flex; gap: 8px; align-items: baseline; font-size: 13px; padding: 4px 8px; border-radius: 6px; }
+.script-lines li.line-failed { background: #fef3f2; }
+.script-lines li.line-breakpoint { background: #eff6ff; }
+.line-tag { flex: none; font-size: 12px; color: var(--muted); min-width: 44px; }
+.line-failed .line-tag { color: #b42318; }
+.line-breakpoint .line-tag { color: var(--brand); }
+.script-lines code, .cell-code { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 12px; }
+.run-meta { margin-left: 10px; font-size: 12px; color: var(--muted); font-weight: normal; }
+.diff-card { margin-top: 12px; border: 1px solid #abefc6; background: #f6fef9; border-radius: 8px; padding: 10px 12px; }
+.diff-card h4 { margin-top: 0; }
+.diff-summary { font-size: 13px; margin: 4px 0 8px; }
+.diff-steps { margin: 8px 0 0; padding-left: 18px; font-size: 13px; }
+.run-history { margin-top: 16px; }
+.pager { display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+.pager .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.pager-jump input { width: 56px; margin: 0 4px; padding: 4px 6px; border: 1px solid var(--border); border-radius: 6px; }
+.pager-size { padding: 4px 6px; border: 1px solid var(--border); border-radius: 6px; background: #fff; }
+.modal-mask { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.35); display: flex; align-items: center; justify-content: center; z-index: 20; }
+.modal-card { background: #fff; border-radius: 10px; padding: 18px 20px; width: 520px; max-width: 92vw; display: flex; flex-direction: column; gap: 10px; }
+.modal-card h3 { margin: 0; }
+.modal-card textarea, .modal-card input { width: 100%; padding: 6px 8px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit; }
